@@ -28,8 +28,10 @@ class DatasetReg(Dataset):
     def __getitem__(self, index):
         name_file = self.list_name_file[index]
         path_img = os.path.join(self.path, name_file)
-        img = np.array(Image.open(path_img))
-        coord = np.array(self.dict_coords[name_file])
+        # img = np.array(Image.open(path_img))
+        img = Image.open(path_img)
+        # coord = np.array(self.dict_coords[name_file])
+        coord = torch.tensor(self.dict_coords[name_file], dtype=torch.float32)
         if self.transform is not None:
             img = self.transform(img)
         return img, coord

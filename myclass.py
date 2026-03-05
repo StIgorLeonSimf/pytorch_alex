@@ -35,7 +35,8 @@ class MnistDataset(Dataset):
 
     def __getitem__(self, index):
         file_path, target = self.data_list[index]
-        sample = np.array(Image.open(file_path))
+        # sample = np.array(Image.open(file_path))
+        sample = Image.open(file_path)
         if self.transform is not None:
             sample = self.transform(sample)
         return sample, target
